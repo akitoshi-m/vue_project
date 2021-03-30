@@ -10,30 +10,38 @@
 
     <div id="app">
       <p>{{ message }}</p>
-      <p>{{ number }}</p>
+      <p>{{ number }}回クリックされました</p>
       <button v-on:click='reverseMessage'>メッセージ反転</button>
-      <button v-on:click='addNumber'>数字を増やす</button>
+      <button v-on:click='countUp'>数字を増やす</button>
       <a :href="url">Google</a>
       <a :href="twitterObject">Twitter</a>
+      <p v-on:mousemove="changeMousePosition(4, $event)">マウスをのせてください</p>
+      <p>X:{{x}},Y:{{y}}</p>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
           message: 'hello world!!',
-          number: 3,
+          number: 0,
           url: 'https://google.com',
           twitterObject: {
             url: 'https://twitter.com',
             id: 31
-          }
+          },
+          x: 0,
+          y: 0
         },
         methods: {
           reverseMessage: function() {
             this.message = this.message.split('').reverse().join('')
           },
-          addNumber: function() {
+          countUp: function() {
             this.number = this.number + 1;
+          },
+          changeMousePosition: function(event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
           }
         }
       })
