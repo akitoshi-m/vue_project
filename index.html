@@ -19,6 +19,7 @@
       <span v-on:mousemove="noEvent">反応させない</span></p>
       <span v-on:mousemove.stop>反応させない</span></p>
       <p>X:{{x}},Y:{{y}}</p>
+      <input type="text" v-on:keyup.space.enter="myAlert">
     </div>
     <script>
       new Vue({
@@ -47,6 +48,9 @@
           },
           noEvent: function(event) {
             event.stopPropagation()
+          },
+          myAlert: function() {
+            alert('アラート');
           }
         }
       })
