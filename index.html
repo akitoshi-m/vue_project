@@ -12,10 +12,12 @@
       <p>{{ message }}</p>
       <p>{{ number }}回クリックされました</p>
       <button v-on:click='reverseMessage'>メッセージ反転</button>
-      <button v-on:click='countUp'>数字を増やす</button>
+      <button v-on:click='countUp(3)'>数字を増やす</button>
       <a :href="url">Google</a>
       <a :href="twitterObject">Twitter</a>
       <p v-on:mousemove="changeMousePosition(4, $event)">マウスをのせてください</p>
+      <span v-on:mousemove="noEvent">反応させない</span></p>
+      <span v-on:mousemove.stop>反応させない</span></p>
       <p>X:{{x}},Y:{{y}}</p>
     </div>
     <script>
@@ -36,12 +38,15 @@
           reverseMessage: function() {
             this.message = this.message.split('').reverse().join('')
           },
-          countUp: function() {
-            this.number = this.number + 1;
+          countUp: function(times) {
+            this.number = this.number +1 * times;
           },
-          changeMousePosition: function(event) {
-            this.x = event.clientX;
-            this.y = event.clientY;
+          changeMousePosition: function(divideNumber, event) {
+            this.x = event.clientX / divideNumber;
+            this.y = event.clientY / divideNumber;
+          },
+          noEvent: function(event) {
+            event.stopPropagation()
           }
         }
       })
