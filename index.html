@@ -13,13 +13,20 @@
       <p>{{ number }}</p>
       <button v-on:click='reverseMessage'>メッセージ反転</button>
       <button v-on:click='addNumber'>数字を増やす</button>
+      <a :href="url">Google</a>
+      <a :href="twitterObject">Twitter</a>
     </div>
     <script>
       new Vue({
         el: '#app',
         data: {
           message: 'hello world!!',
-          number: 3
+          number: 3,
+          url: 'https://google.com',
+          twitterObject: {
+            url: 'https://twitter.com',
+            id: 31
+          }
         },
         methods: {
           reverseMessage: function() {
