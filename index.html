@@ -9,8 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <div id="app">
-      <p>{{ message }}</p>
+      <input type="text" v-model="message">
+      <h1>{{ message }}</h1>
       <p>{{ number }}回クリックされました</p>
+      <button @click="counter += 1">+1</button>
+      <p>{{ counter }}</p>
+      <p>{{ lessThanThree }}</p>
       <button v-on:click='reverseMessage'>メッセージ反転</button>
       <button v-on:click='countUp(3)'>数字を増やす</button>
       <a :href="url">Google</a>
@@ -25,7 +29,7 @@
       new Vue({
         el: '#app',
         data: {
-          message: 'hello world!!',
+          message: 'hello world!',
           number: 0,
           url: 'https://google.com',
           twitterObject: {
@@ -33,7 +37,14 @@
             id: 31
           },
           x: 0,
-          y: 0
+          y: 0,
+          counter: 0
+        },
+        computed: {
+          lessThanThree: function() {
+            console.log('test');
+            return this.counter > 3 ? '3より上' : '3未満'
+          }
         },
         methods: {
           reverseMessage: function() {
