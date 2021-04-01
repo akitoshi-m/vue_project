@@ -9,22 +9,48 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <div id="app">
-      <input type="text" v-model="message">
-      <h1>{{ message }}</h1>
-      <p>{{ number }}回クリックされました</p>
-      <button @click="counter += 1">+1</button>
-      <p>{{ counter }}</p>
-      <p>{{ lessThanThree }}</p>
-      <button v-on:click='reverseMessage'>メッセージ反転</button>
-      <button v-on:click='countUp(3)'>数字を増やす</button>
-      <a :href="url">Google</a>
-      <a :href="twitterObject">Twitter</a>
-      <p v-on:mousemove="changeMousePosition(4, $event)">マウスをのせてください</p>
-      <span v-on:mousemove="noEvent">反応させない</span></p>
-      <span v-on:mousemove.stop>反応させない</span></p>
-      <p>X:{{x}},Y:{{y}}</p>
-      <input type="text" v-on:keyup.space.enter="myAlert">
+      <div>
+        <input type="text" v-model="message">
+        <h1>{{ message }}</h1>
+        <button v-on:click='reverseMessage'>メッセージ反転</button>
+      </div>
+      <div>
+        <h3>クリックして数字を増やす</h3>
+        <p>{{ number }}回クリックされました</p>
+        <button v-on:click='countUp(3)'>数字を増やす</button>
+      </div>
+      <div>
+        <h3>数字を増やして表示を変える</h3>
+        <p>{{ counter }}</p>
+        <p>{{ lessThanThree }}</p>
+        <button @click="counter += 1">+1</button>
+      </div>
+      <div>
+        <h3>リンク</h3>
+        <a :href="url">Google</a>
+        <a :href="twitterObject">Twitter</a>
+      </div>
+      <div>
+        <h3>マウスをのせると反応する処理と反応をさせない処理</h3>
+        <p>X:{{x}},Y:{{y}}</p>
+        <p v-on:mousemove="changeMousePosition(4, $event)">マウスをのせてください</p>
+        <span v-on:mousemove="noEvent">マウス反応させない</span></p>
+        <span v-on:mousemove.stop>マウス反応させない</span></p>
+      </div>
+      <div>
+        <h3>スペースとエンターのキー入力でアラートダイアログが出る</h3>
+        <input type="text" v-on:keyup.space.enter="myAlert">
+      </div>
+      <div>
+        <h3>v-forでオブジェクトを繰り返し表示</h3>
+        <ol>
+          <li v-for="Object in Objects">
+            {{ Object.item }}
+          </li>
+        </ol>
+      </div>
     </div>
+    
     <script>
       new Vue({
         el: '#app',
@@ -38,7 +64,12 @@
           },
           x: 0,
           y: 0,
-          counter: 0
+          counter: 0,
+          Objects: [
+            { item: 'そのいち' },
+            { item: 'そのに' },
+            { item: 'そのさん' }
+          ]
         },
         computed: {
           lessThanThree: function() {
