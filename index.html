@@ -44,14 +44,20 @@
       <div>
         <h3>v-forでオブジェクトを繰り返し表示</h3>
         <ol>
-          <li v-for="Object in Objects">
-            {{ Object.item }}
+          <li v-for="(Object, index) in Objects">
+            {{ index }}: {{ Object.item }}
           </li>
         </ol>
       </div>
       <div>
         <h1 :style="styleObject">HELLO</h1>
       </div>
+      <template v-for="Object in Objects">
+        <li>
+          {{ Object }}
+        </li>
+        <hr>
+      </template>
     </div>
 
     <script>
