@@ -63,9 +63,17 @@
         </li>
         <hr>
       </template>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello> 
     </div>
 
     <script>
+      Vue.component('hello', {
+        template: '<p>こんにちは</p>'
+      });
+
       new Vue({
         el: '#app',
         data: {
