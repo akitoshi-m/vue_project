@@ -52,18 +52,32 @@
       <div>
         <h1 :style="styleObject">HELLO</h1>
       </div>
+      <div>
+        <p>{{ name }}</p>
+        <button @click="name = 'まつだ'">名前を変更</button>
+        <button @click="destroy">インスタンスを破壊</button>
+      </div>
       <template v-for="Object in Objects">
         <li>
           {{ Object }}
         </li>
         <hr>
       </template>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello>
+      <hello></hello> 
     </div>
 
     <script>
+      Vue.component('hello', {
+        template: '<p>こんにちは</p>'
+      });
+
       new Vue({
         el: '#app',
         data: {
+          name: 'あああああ',
           message: 'hello world!',
           number: 0,
           url: 'https://google.com',
@@ -106,11 +120,35 @@
           },
           myAlert: function() {
             alert('アラート');
+          },
+          destroy: function() {
+            this.$destroy()
           }
         },
-        render: function(createElement) {
-          return createElement('h1', 'こんにちは' + this.message);
-        }
+        beforeCreate: function() {
+          console.log('beforeCreate');
+        },
+        created: function() {
+          console.log('cerated');
+        },
+        beforeMount: function() {
+          console.log('beforeMount');
+        },
+        mounted: function() {
+          console.log('mounted');
+        },
+        beforeUpdate: function() {
+          console.log('beforeUpdate');
+        },
+        updated: function() {
+          console.log('updated');
+        },
+        beforeDestroy: function() {
+          console.log('beforeDestory');
+        },
+        destroyed: function() {
+          console.log('destroyed');
+        },
       })
     </script>
   </body>
