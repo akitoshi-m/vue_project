@@ -107,6 +107,9 @@
           myAlert: function() {
             alert('アラート');
           }
+        },
+        render: function(createElement) {
+          return createElement('h1', 'こんにちは' + this.message);
         }
       })
     </script>
